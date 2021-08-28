@@ -19,7 +19,7 @@ console.log(playerCharacters)
 
 /* 2.  Add and remove key/value pairs */
 
-    // add the key/value pair, "Dragon Born" : "Za'a'a'a'a'thar"
+    // add the key/value pair, "Dragonborn" : "Za'a'a'a'a'thar"
 
 
     // Remove key/value pair
