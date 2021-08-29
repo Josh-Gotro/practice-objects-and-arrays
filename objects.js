@@ -43,6 +43,8 @@ Change value and key */
 
 // Change key "Bard" to "BestClass"
 
+
+// Object 2
 let efreetiBottle = {
     "index": "efreeti-bottle",
     "name": "Efreeti Bottle",
