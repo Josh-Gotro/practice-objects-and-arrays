@@ -12,19 +12,24 @@ console.log(playerCharacters)
 
 // Return the value of "Warlock"
 
+console.log("testReturnWarlock: ",playerCharacters.Warlock);
+
 // BONUS : Return any key
 
-
-
+const playerKeys = Object.keys(playerCharacters);
+console.log("Find a player key: ",playerKeys[1]);
 
 /* 2.  Add and remove key/value pairs */
 
 // add the key/value pair, "Dragonborn" : "Za'a'a'a'a'thar"
 
+playerCharacters.Dragonborn = "Za'a'a'a'a'thar";
+console.log("Hi Rob!",playerCharacters);
 
 // Remove key/value pair
 
-
+delete playerCharacters.Dragonborn;
+console.log("Bye Rob!",playerCharacters);
 
 
 /* BONUS  */
