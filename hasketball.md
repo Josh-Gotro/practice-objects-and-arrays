@@ -135,25 +135,6 @@ A key strategy to iterating towards _correctness_ is running a small subset of
 tests to have _JavaScript_ validate our nested data structure instead of our
 error-prone human eyes.
 
-### Process Tip: Run Only a Few Tests
-
-When we have a lot of tests and run them all with `learn` and get back all
-those failing messages it can make us feel sad. It's like telling someone
-you're trying to learn an étude on piano and they keep telling you it's not
-perfect yet. "Yeah, we know, that's why we said we're _l-e-a-r-n-i-n-g_ it."
-
-We can run a section of our tests by using the following command from the CLI:
-
-`rspec spec/objectketball_spec.rb -e game_object`
-
-The thing that lets us run only a portion of the test suite is the `-e` for
-`--example` flag. It means "only run tests in a section that matches the word
-`game_object`." You can read more about it in the [RSpec documentation for `--example`][example].
-
-The `learn` program uses `rspec` to evaluate test success. So, if we get a
-subset of the tests working, as proved by `rspec`, we can trust that those tests
-will pass when we run `learn`.
-
 > **Wisdom**: Move from working to working to working. Never let "broken in
 > this way, and that way, and that way" mount up!
 
@@ -168,11 +149,7 @@ demand. We're ready for Step 2!
 ## Step 2: Building functions
 
 At this point, you're where you were with earlier labs. You were given a nested
-data structure and then needed to process it to product _insights_. Since you
-have a thorough understanding of the nested data structure (you wrote it, after
-all), we don't need to review things like using `pp` to "pretty-print" the
-nested data structure. We can pick up on our process from where we need to
-start processing the nested data structure into _insights_.
+data structure and then needed to process it to product _insights_. 
 
 1. Ensure you can read data out of the nested data structure with simple, basic
    `[]` calls
@@ -188,50 +165,6 @@ this pattern **is still valid**. The only thing that's changed is that in some
 places you can see where an Enumerable could make your code clearer and
 briefer.  ***This process works***. Take this lab as a chance to hone your
 skills attacking BIG problems with process _on your side_.
-
-### Applying Nested Data Structure-Processing Process
-
-Run `learn`. There are a whole bunch of functions that are expected to exist. The
-first one is `num_points_scored`. But there's so much output. Let's make it
-more manageable (again).
-
-We can run this function's test, again by using the [-e][example] or `--example`
-flag: `rspec spec/objectketball_spec.rb -e num_points_scored`.
-
-> **PRO TIP**: You can use this strategy to run small chunks of the test suite.
-> Simply look in the `spec/objectketball_spec.rb` file and find a `describe`
-> block. You can run all the tests under it by using that block's `String` as
-> an argument to `-e`.
-
-That `num_points_scored` function produces an _insight_. Here's a specification:
-
-* Build a function, `num_points_scored` that takes in an argument of a player's
-  name and returns the number of points scored for that player.
-
-Why don't we define that function and have it return `game_object`?
-
-```JavaScript
-def num_points_scored
-  game_object
-end
-```
-
-Run the test again. Sure enough, our function fails (unsurprisingly). Here's a
-chance to employ the "see-saw" strategy. Add code to get `num_points_scored`
-working. If you need to "invent" helper functions, to help you process
-`game_object`, do so! Here's some sample thought process:
-
-> Think about where in the object you will find a player's `:points`. How can you
-> iterate down into that level? Think about the return value of your function.
-> Remember that `.each` returns the original collection that you are iterating
-> over. How can you return the number of points for a particular player? How
-> would we have done it with a simple `while` loop? Which Enumerable helps
-> here? Is a while-loop better than an Enumerable? _Etc._
-
-If you repeat the process we just explored together, you will be able to
-deliver more complex functions to satisfy tests. Find a failing test, build a
-"skeleton function," iterate on the code, get success, and move on. This is the
-way software is "grown" in the real world.
 
 ### Additional functions
 
@@ -290,67 +223,13 @@ Define functions to return the answer to the following questions:
 1. Write a function that returns true if the player with the longest name had the
    most steals. Call the function `long_name_steals_a_ton?`.
 
-## "I am completely stuck"
+## "I am so stuck"
 
-This is a challenging lab. Process, small functions, helper functions, the see-saw
-technique. All of these are tools that are designed to get you un-stuck.
+The two best debugging tools you have for this lab are `console.log` and your JavaScript playground provided by `node`.   
 
-One last tool is the "Pry" debugging library. We don't teach it before this lab
-because it brings in the concept of external "libraries" called "Gems." This
-can get really complex with problems around "Do you have permission on your
-computer to install gems" and "Did you install the gem in the wrong place and
-this lab can't see it, etc." We'll cover that in more depth in a different
-module.
+For instance, if you are trying to return a value that is nested in several `object`s and `array`s, try using `console.log` at each layer to confirm that each step works the way you think ig does. 
 
-That said, if it's available on your system, it can be a real help.
-
-From the command line run the command `gem install pry`. If the `gem` command
-returns telling you that pry was installed or that it's already installed, the
-following should work for you.
-
-Next, at the top of `objectketball.rb` put the line `require "pry"`.
-
-Using Pry, when running RSpec tests with the `learn` command, we can pause the
-execution of our JavaScript code. This allows us to step into the code and play with
-any available variables or functions that are in scope.
-
-We tell JavaScript where to pause by writing `binding.pry` in our code. When JavaScript
-sees that magic word, it will stop execution and hand things over to a REPL
-called Pry. It's there that we can do the inspection.
-
-Let's inspect what our `num_points_scored` works with:
-
-```JavaScript
-def num_points_scored(player_name)
-  binding.pry
-  game_object.each do |location, team_data|
-    #are you ABSOLUTELY SURE what 'location' and 'team data' are? use binding.pry to find out!
-    binding.pry
-    team_data.each do |attribute, data|
-      #are you ABSOLUTELY SURE what 'attribute' and 'team data' are? use binding.pry to find out!
-      binding.pry
-
-      #what is 'data' at each loop throughout .each block? when will the following line of code work and when will it break?
-      data.each do |data_item|
-          binding.pry
-      end
-    end
-  end
-end
-```
-
-At every place JavaScript sees `binding.pry`, it will stop the program's execution.
-While the program is stopped, you can print out variables that are in scope. At
-the first `binding.pry` in the example above, you can type in `location` or
-`team_data` and have those values printed out by `pry`. When you're done at the
-binding, type `exit` and the code will resume running. If you're all done with
-a given `pry` session `exit-program` will close Pry and return you to the
-command-line.
-
-Again, the best way to avoid needing Pry is to follow the process and only add
-code by small increments. But, sometimes, when all else fails, a `binding.pry`
-can help you find your way again. We'll teach you more about debugging
-throughout this course and do a deeper dive on Pry specifically.
+Don't forget you can also access the JavaScript playground from your Command Prompt window using the command `node`. This will allow you to quickly test JavaScript concepts. You can assin variables, create functions, or 
 
 ## Conclusion
 
