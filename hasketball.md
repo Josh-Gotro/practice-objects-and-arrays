@@ -36,22 +36,22 @@ lab is so big, be sure to test in your console as you go!
 
 ## Step 1: Building the Object
 
-The first function you will define is called `game_object`. This function contains and
+The first function you will define is called `gameObject`. This function contains and
 returns an object nested in the following manner:
 
 * The top level of the object has two keys: `:home`, for the home team, and
   `:away`, for the away team.
 * The values of the `:home` and `:away` keys are objects. These objects have the
   following keys:
-  * `:team_name`
+  * `:teamName`
   * `:colors`
   * `:players`
-* The `:team_name` key points to a string of the team name.
+* The `:teamName` key points to a string of the team name.
 * The `:colors` key points to an array of strings that are that team's colors.
 * The `:players` key points to an `Array` of `Object`s. Each `Object` in the `Array`
   should contain the players' stats. Each stat should be a key that points to
   a value for that stat. The keys should be:
-  * `:player_name`
+  * `:playerName`
   * `:number`
   * `:shoe`
   * `:points`
@@ -59,7 +59,7 @@ returns an object nested in the following manner:
   * `:assists`
   * `:steals`
   * `:blocks`
-  * `:slam_dunks`
+  * `:slamDunks`
 * The data for each player is provided in a table below.
 
 Home Team:
@@ -98,10 +98,9 @@ Away Team:
 | **Blocks**         | 7                 | 15                | 5                 | 1               | 5                 |
 | **Slam Dunks**     | 2                 | 10                | 5                 | 0               | 12                |
 
-Write a function called `game_object` that returns your nested data structure. We
-might suggest starting with having `game_object` return only a `{}`. Then run the
-`game_object` tests (see next section) and slowly build up your nested data
-structure to satisfy those tests. We'll describe the strategy here in the next
+Write a function called `gameObject` that returns your nested data structure. We
+might suggest starting with having `gameObject` return only a `{}`. Then slowly build up your nested data
+structure to satisfy each section piece by piece. We'll describe the strategy here in the next
 sections.
 
 ### Process Tip: Writing Nested Data Structures is Hard
@@ -138,14 +137,6 @@ error-prone human eyes.
 > **Wisdom**: Move from working to working to working. Never let "broken in
 > this way, and that way, and that way" mount up!
 
-### Leaving Step 1
-
-Let's zoom back out again and run _all_ the tests. Many tests fail, but the
-good news is that the three tests in the "`game_object`" example are _passing_.
-That means we have a _correct_ and _syntactically valid_ nested data structure
-to work with. That means we can start building the functions that the tests
-demand. We're ready for Step 2!
-
 ## Step 2: Building functions
 
 At this point, you're where you were with earlier labs. You were given a nested
@@ -168,28 +159,28 @@ skills attacking BIG problems with process _on your side_.
 
 ### Additional functions
 
-* Build a function, `shoe_size`, that takes in an argument of a player's name and
+* Build a function, `shoeSize`, that takes in an argument of a player's name and
   returns the shoe size for that player.
   * Think about how you will find the shoe size of the correct player. How can
     you check and see if a player's name matches the name that has been passed
     into the function as an argument?
 
-* Build a function, `team_colors`, that takes in an argument of the team name and
+* Build a function, `teamColors`, that takes in an argument of the team name and
   returns an `Array` of that team's colors.
 
-* Build a function, `team_names`, that operates on the game `object` to return an
+* Build a function, `teamNames`, that operates on the game `object` to return an
   `Array` of the team names.
 
-* Build a function, `player_numbers`, that takes in an argument of a team name and
+* Build a function, `playerNumbers`, that takes in an argument of a team name and
   returns an `Array` of the jersey numbers for that team.
 
-* Build a function, `player_stats`, that takes in an argument of a player's name
+* Build a function, `playerStats`, that takes in an argument of a player's name
   and returns a object of that player's stats.
   * Check out the following example of the expected return value of the
-    `player_stats` function:
+    `playerStats` function:
 
   ```bash
-  player_stats("Alan Anderson")
+  playerStats("Alan Anderson")
   => { :number => 0,
         :shoe => 16,
         :points => 22,
@@ -197,11 +188,11 @@ skills attacking BIG problems with process _on your side_.
         :assists => 12,
         :steals => 3,
         :blocks => 1,
-        :slam_dunks => 1
+        :slamDunks => 1
       }
   ```
 
-* Build a function, `big_shoe_rebounds`, that will return the number of rebounds
+* Build a function, `bigShoeRebounds`, that will return the number of rebounds
   associated with the player that has the largest shoe size. Break this one down
   into steps:
   * First, find the player with the largest shoe size
@@ -212,16 +203,16 @@ skills attacking BIG problems with process _on your side_.
 
 Define functions to return the answer to the following questions:
 
-1. Which player has the most points? Call the function `most_points_scored`.
+1. Which player has the most points? Call the function `mostPointsScored`.
 
-2. Which team has the most points? Call the function `winning_team`.
+2. Which team has the most points? Call the function `winningTeam`.
 
-3. Which player has the longest name? Call the function `player_with_longest_name`.
+3. Which player has the longest name? Call the function `playerWithLongestName`.
 
 **Super Bonus:**
 
 1. Write a function that returns true if the player with the longest name had the
-   most steals. Call the function `long_name_steals_a_ton?`.
+   most steals. Call the function `longNameStealsATon?`.
 
 ## "I am so stuck"
 
