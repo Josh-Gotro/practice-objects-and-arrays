@@ -6,6 +6,7 @@ let playerCharacters = {
     "Monk": "Rabbit",
     "Bard": "Nico",
 }
+
 console.log(playerCharacters)
 
 /* 1. Return data from an object */
@@ -37,7 +38,41 @@ console.log("Bye Rob!",playerCharacters);
 // Refactor so the functions so they are reusable 
 
 
+function addPlayer(playerClass, playerName) {
+    playerCharacters[playerClass] = playerName;
+    console.log(playerCharacters);
+};
 
+addPlayer("Sorcerer", "Ilshan");
+
+function removePlayer(playerClass) {
+    delete playerCharacters[playerClass];
+    console.log("Bye",playerClass,"!",playerCharacters);
+};
+
+function listClass(party) {
+
+}
+
+/* test block for accepting user input
+
+const readline = require('readline');
+
+const userNewClass = [];
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+rl.question('Which class would you like to add? ', (answer) => {
+    userNewClass.push(answer);
+    console.log("User typed: ",userNewClass);
+
+    rl.close();
+});
+
+end test block for accepting user input */
 
 
 /* 3. -------------------------------------------------
@@ -75,9 +110,12 @@ let efreetiBottle = {
 
     // Print the second element of "desc"
 
+    console.log(efreetiBottle.desc[1]);
+
     // Add a key value pair to efreetiBottle. The key should be called "Owner" and the value should be an array of strings that includes at least one element. 
     // ex "owner": ["Samuel", "Rabbit"]
 
+efreetiBottle["Owner"] = ["Samuel", "Rabbit"];
 
     // Add another element to the "desc" array that adds to the description. 
 
